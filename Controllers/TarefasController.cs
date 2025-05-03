@@ -10,7 +10,7 @@ namespace ListaTarefasApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(new { message = "API de Lista de Tarefas funcionando!" });
+            return Ok(new { message = "API de Lista de Tarefas funcionando." });
         }
     }
 }
