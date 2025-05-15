@@ -69,6 +69,8 @@ li.concluida {
 
 li button {
   margin-left: 10px;
+  background-color: #dc3545;
+  border: none;
   padding: 6px 10px;
   color: white;
   border: none;
@@ -76,18 +78,6 @@ li button {
   cursor: pointer;
 }
 
-li button:first-of-type {
-  background-color: #28a745; /*concluir*/
-}
-
-li button:first-of-type:hover {
-  background-color: #218838;
-}
-
-li button:last-of-type {
-  background-color: #dc3545; /*excluir*/
-}
-
-li button:last-of-type:hover {
+li button:hover {
   background-color: #bd2130;
 }

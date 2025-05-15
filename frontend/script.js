@@ -1,9 +1,9 @@
-const API_URL = 'http://localhost:5000/tarefas';
+const apiUrl = 'http://localhost:5000/tarefas';
 
 // Carregar as tarefas
 async function carregarTarefas() {
   try {
-    const resposta = await fetch(API_URL);
+    const resposta = await fetch(apiUrl);
     const tarefas = await resposta.json();
 
     const lista = document.getElementById('lista-tarefas');
@@ -12,17 +12,23 @@ async function carregarTarefas() {
     tarefas.forEach(tarefa => {
       const item = document.createElement('li');
       item.textContent = tarefa.titulo;
-      item.className = tarefa.concluida ? 'concluida' : '';
+      item.classList.toggle('concluida', tarefa.concluida);
 
       // Botão de concluir
       const btnConcluir = document.createElement('button');
       btnConcluir.textContent = tarefa.concluida ? 'Desfazer' : 'Concluir';
-      btnConcluir.onclick = () => atualizarStatus(tarefa.id, !tarefa.concluida);
+      btnConcluir.addEventListener('click', async () => {
+        await atualizarTarefa(tarefa.id, { concluida: !tarefa.concluida });
+        carregarTarefas();
+      });
 
-      // Botão de excluir
+      // Botão de deletar
       const btnExcluir = document.createElement('button');
       btnExcluir.textContent = 'Excluir';
-      btnExcluir.onclick = () => excluirTarefa(tarefa.id);
+      btnExcluir.addEventListener('click', async () => {
+        await deletarTarefa(tarefa.id);
+        carregarTarefas();
+      });
 
       item.appendChild(btnConcluir);
       item.appendChild(btnExcluir);
@@ -33,53 +39,50 @@ async function carregarTarefas() {
   }
 }
 
-// Adicionar uma nova tarefa
-async function adicionarTarefa(evento) {
-  evento.preventDefault();
-  const input = document.getElementById('nova-tarefa');
-  const titulo = input.value.trim();
-
-  if (titulo === '') return;
-
+async function adicionarTarefa(titulo) {
   try {
-    await fetch(API_URL, {
+    await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ titulo })
-    });
-    input.value = '';
+});
     carregarTarefas();
   } catch (erro) {
     console.error('Erro ao adicionar tarefa:', erro);
   }
 }
 
-// Atualizar o status (concluída/não concluída)
-async function atualizarStatus(id, novoStatus) {
+async function deletarTarefa(id) {
   try {
-    await fetch(`${API_URL}/${id}`, {
+    await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+  } catch (erro) {
+    console.error('Erro ao deletar tarefa:', erro);
+  }
+}
+
+async function atualizarTarefa(id, dados) {
+  try {
+    await fetch(`${apiUrl}/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ concluida: novoStatus })
+      body: JSON.stringify(dados)
     });
     carregarTarefas();
   } catch (erro) {
-    console.error('Erro ao atualizar status:', erro);
+    console.error('Erro ao atualizar tarefa:', erro);
   }
 }
 
-// Excluir uma tarefa
-async function excluirTarefa(id) {
-  try {
-    await fetch(`${API_URL}/${id}`, {
-      method: 'DELETE'
-    });
-    carregarTarefas();
-  } catch (erro) {
-    console.error('Erro ao excluir tarefa:', erro);
+// Event listener para o submit do formulário
+document.getElementById('form-tarefa').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const input = document.getElementById('nova-tarefa');
+  const titulo = input.value.trim();
+  if (titulo) {
+    adicionarTarefa(titulo);
+    input.value = '';  // limpa o campo após adicionar
   }
-}
+});
 
-// Inicialização
-document.getElementById('form-tarefa').addEventListener('submit', adicionarTarefa);
+// Inicializar lista ao carregar a página
 carregarTarefas();
