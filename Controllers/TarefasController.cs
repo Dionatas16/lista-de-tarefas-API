@@ -13,4 +13,18 @@ namespace ListaTarefasApi.Controllers
             return Ok(new { message = "API de Lista de Tarefas funcionando." });
         }
     }
+
+[HttpGet("listar")]
+public IActionResult ListarTarefas()
+{
+    var tarefas = new List<string>
+    {
+        "Estudar C#",
+        "Fazer o commit semanal",
+        "Planejar endpoints da API"
+    };
+
+    return Ok(tarefas);
+}
+
 }
