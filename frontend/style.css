@@ -40,6 +40,7 @@ button {
   font-weight: bold;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -69,15 +70,44 @@ li.concluida {
 
 li button {
   margin-left: 10px;
-  background-color: #dc3545;
-  border: none;
   padding: 6px 10px;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-li button:hover {
+/* Botão de concluir/desfazer (verde) */
+li button:first-child {
+  background-color: #28a745;
+}
+
+li button:first-child:hover {
+  background-color: #218838;
+}
+
+/* Botão de excluir (vermelho) */
+li button:last-child {
+  background-color: #dc3545;
+}
+
+li button:last-child:hover {
   background-color: #bd2130;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  input[type="text"], button {
+    width: 100%;
+  }
 }

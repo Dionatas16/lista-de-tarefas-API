@@ -14,7 +14,7 @@ async function carregarTarefas() {
       item.textContent = tarefa.titulo;
       item.classList.toggle('concluida', tarefa.concluida);
 
-      // Botão de concluir
+      // Botão de concluir/desfazer
       const btnConcluir = document.createElement('button');
       btnConcluir.textContent = tarefa.concluida ? 'Desfazer' : 'Concluir';
       btnConcluir.addEventListener('click', async () => {
@@ -45,7 +45,7 @@ async function adicionarTarefa(titulo) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ titulo })
-});
+    });
     carregarTarefas();
   } catch (erro) {
     console.error('Erro ao adicionar tarefa:', erro);
@@ -67,7 +67,6 @@ async function atualizarTarefa(id, dados) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados)
     });
-    carregarTarefas();
   } catch (erro) {
     console.error('Erro ao atualizar tarefa:', erro);
   }
@@ -80,9 +79,13 @@ document.getElementById('form-tarefa').addEventListener('submit', function (e) {
   const titulo = input.value.trim();
   if (titulo) {
     adicionarTarefa(titulo);
-    input.value = '';  // limpa o campo após adicionar
+    input.value = '';
+    input.focus();
   }
 });
 
-// Inicializar lista ao carregar a página
-carregarTarefas();
+// Inicializar lista e focar no input ao carregar a página
+window.onload = () => {
+  document.getElementById('nova-tarefa').focus();
+  carregarTarefas();
+};
