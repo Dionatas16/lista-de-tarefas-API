@@ -6,25 +6,49 @@ namespace ListaTarefasApi.Controllers
     [ApiController]
     public class TarefasController : ControllerBase
     {
-        // GET: api/Tarefas
-        [HttpGet]
-        public IActionResult Get()
+        private static List<string> tarefas = new List<string>
         {
-            return Ok(new { message = "API de Lista de Tarefas funcionando." });
+            "Estudar C#",
+            "Fazer o commit semanal",
+            "Planejar endpoints da API"
+        };
+
+        // GET: api/tarefas
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            return Ok(tarefas);
+        }
+
+        // POST: api/tarefas
+        [HttpPost]
+        public IActionResult Criar([FromBody] string novaTarefa)
+        {
+            tarefas.Add(novaTarefa);
+            return Created("", novaTarefa);
+        }
+
+        // PUT: api/tarefas/1
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, [FromBody] string tarefaAtualizada)
+        {
+            if (id < 0 || id >= tarefas.Count)
+                return NotFound();
+
+            tarefas[id] = tarefaAtualizada;
+            return Ok(tarefaAtualizada);
+        }
+
+        // DELETE: api/tarefas/1
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            if (id < 0 || id >= tarefas.Count)
+                return NotFound();
+
+            var tarefaRemovida = tarefas[id];
+            tarefas.RemoveAt(id);
+            return Ok($"Tarefa removida: {tarefaRemovida}");
         }
     }
-
-[HttpGet("listar")]
-public IActionResult ListarTarefas()
-{
-    var tarefas = new List<string>
-    {
-        "Estudar C#",
-        "Fazer o commit semanal",
-        "Planejar endpoints da API"
-    };
-
-    return Ok(tarefas);
-}
-
 }

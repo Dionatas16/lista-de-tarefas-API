@@ -31,3 +31,4 @@ C:\Users\diona\ListaTarefasApi\obj\Debug\net8.0\refint\ListaTarefasApi.dll
 C:\Users\diona\ListaTarefasApi\obj\Debug\net8.0\ListaTarefasApi.pdb
 C:\Users\diona\ListaTarefasApi\obj\Debug\net8.0\ListaTarefasApi.genruntimeconfig.cache
 C:\Users\diona\ListaTarefasApi\obj\Debug\net8.0\ref\ListaTarefasApi.dll
+C:\Users\diona\ListaTarefasApi\obj\Debug\net8.0\ListaTarefasApi.sourcelink.json
