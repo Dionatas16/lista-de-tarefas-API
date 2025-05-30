@@ -1,6 +1,6 @@
 const apiUrl = 'http://localhost:5000/tarefas';
 
-// Carregar as tarefas
+
 async function carregarTarefas() {
   try {
     const resposta = await fetch(apiUrl);
@@ -14,7 +14,7 @@ async function carregarTarefas() {
       item.textContent = tarefa.titulo;
       item.classList.toggle('concluida', tarefa.concluida);
 
-      // Botão de concluir/desfazer
+      
       const btnConcluir = document.createElement('button');
       btnConcluir.textContent = tarefa.concluida ? 'Desfazer' : 'Concluir';
       btnConcluir.addEventListener('click', async () => {
@@ -22,12 +22,15 @@ async function carregarTarefas() {
         carregarTarefas();
       });
 
-      // Botão de deletar
+      
       const btnExcluir = document.createElement('button');
       btnExcluir.textContent = 'Excluir';
       btnExcluir.addEventListener('click', async () => {
-        await deletarTarefa(tarefa.id);
-        carregarTarefas();
+        item.classList.add('removendo');
+        setTimeout(async () => {
+          await deletarTarefa(tarefa.id);
+          carregarTarefas();
+        }, 300);
       });
 
       item.appendChild(btnConcluir);
@@ -46,6 +49,7 @@ async function adicionarTarefa(titulo) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ titulo })
     });
+    alert('Tarefa adicionada com sucesso!');
     carregarTarefas();
   } catch (erro) {
     console.error('Erro ao adicionar tarefa:', erro);
@@ -72,11 +76,20 @@ async function atualizarTarefa(id, dados) {
   }
 }
 
-// Event listener para o submit do formulário
+
 document.getElementById('form-tarefa').addEventListener('submit', function (e) {
   e.preventDefault();
   const input = document.getElementById('nova-tarefa');
   const titulo = input.value.trim();
+
+  
+  const lista = document.querySelectorAll('#lista-tarefas li');
+  const jaExiste = Array.from(lista).some(li => li.textContent.includes(titulo));
+  if (jaExiste) {
+    alert('Essa tarefa já existe!');
+    return;
+  }
+
   if (titulo) {
     adicionarTarefa(titulo);
     input.value = '';
@@ -84,7 +97,7 @@ document.getElementById('form-tarefa').addEventListener('submit', function (e) {
   }
 });
 
-// Inicializar lista e focar no input ao carregar a página
+
 window.onload = () => {
   document.getElementById('nova-tarefa').focus();
   carregarTarefas();

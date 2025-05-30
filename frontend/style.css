@@ -60,6 +60,13 @@ li {
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+li.removendo {
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
 li.concluida {
@@ -78,7 +85,7 @@ li button {
   transition: background-color 0.3s ease;
 }
 
-/* Botão de concluir/desfazer (verde) */
+
 li button:first-child {
   background-color: #28a745;
 }
@@ -87,7 +94,7 @@ li button:first-child:hover {
   background-color: #218838;
 }
 
-/* Botão de excluir (vermelho) */
+
 li button:last-child {
   background-color: #dc3545;
 }
@@ -96,7 +103,7 @@ li button:last-child:hover {
   background-color: #bd2130;
 }
 
-/* Responsividade */
+
 @media (max-width: 600px) {
   .container {
     padding: 20px;
