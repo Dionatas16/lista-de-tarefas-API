@@ -1,0 +1,110 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #2835a7;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #212b88;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Mantém o fundo verde para tarefas concluídas */
+li.concluida {
+  background-color: #d4edda;
+}
+
+/* Só a descrição fica riscada */
+li span.concluida {
+  text-decoration: line-through;
+  color: #155724;
+}
+
+/* Botões */
+li button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+li button:first-of-type {
+  background-color: #09ff00;
+  color: white;
+}
+
+li button:first-of-type:hover {
+  background-color: #067a16;
+}
+
+li button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
+
+li button:last-of-type:hover {
+  background-color: #c82333;
+}
+
+/* Animação para exclusão */
+li.removendo {
+  opacity: 0.5;
+  transform: scale(0.95);
+  transition: opacity 0.3s, transform 0.3s;
+}

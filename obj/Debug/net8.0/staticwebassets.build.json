@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "V/TC9Q47IPSbZ3GyUhRsUY4M0iaQlxa93VYxb1kVtK4=",
+  "Hash": "Gs4eIctfHwjULnqUgGt1Lm6o2n+ZLA3VV7fDGag2Zzk=",
   "Source": "ListaTarefasApi",
   "BasePath": "_content/ListaTarefasApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ListaTarefasApi\\wwwroot",
+      "Source": "ListaTarefasApi",
+      "ContentRoot": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\",
+      "BasePath": "_content/ListaTarefasApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\index.html",
+      "SourceId": "ListaTarefasApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\",
+      "BasePath": "_content/ListaTarefasApi",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\script.js",
+      "SourceId": "ListaTarefasApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\",
+      "BasePath": "_content/ListaTarefasApi",
+      "RelativePath": "script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\script.js"
+    },
+    {
+      "Identity": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\style.css",
+      "SourceId": "ListaTarefasApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\diona\\ListaTarefasApi\\wwwroot\\",
+      "BasePath": "_content/ListaTarefasApi",
+      "RelativePath": "style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
+    }
+  ]
 }
