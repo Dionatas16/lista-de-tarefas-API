@@ -10,18 +10,22 @@ async function carregarTarefas() {
 
     tarefas.forEach(tarefa => {
       const item = document.createElement('li');
+      item.className = 'list-group-item d-flex justify-content-between align-items-center';
 
-      // Texto da tarefa dentro de um span separado
+      // Texto da tarefa
       const texto = document.createElement('span');
       texto.textContent = tarefa.descricao;
       if (tarefa.concluida) {
         texto.classList.add('concluida');
       }
-      item.appendChild(texto);
 
-      // Botão concluir/desfazer
+      // Grupo de botões
+      const botoes = document.createElement('div');
+      botoes.className = 'btn-group btn-group-sm';
+
       const btnConcluir = document.createElement('button');
       btnConcluir.textContent = tarefa.concluida ? 'Desfazer' : 'Concluir';
+      btnConcluir.className = 'btn btn-success';
       btnConcluir.addEventListener('click', async () => {
         await atualizarTarefa(tarefa.id, {
           descricao: tarefa.descricao,
@@ -30,9 +34,9 @@ async function carregarTarefas() {
         carregarTarefas();
       });
 
-      // Botão excluir
       const btnExcluir = document.createElement('button');
       btnExcluir.textContent = 'Excluir';
+      btnExcluir.className = 'btn btn-danger';
       btnExcluir.addEventListener('click', async () => {
         item.classList.add('removendo');
         setTimeout(async () => {
@@ -41,8 +45,11 @@ async function carregarTarefas() {
         }, 300);
       });
 
-      item.appendChild(btnConcluir);
-      item.appendChild(btnExcluir);
+      botoes.appendChild(btnConcluir);
+      botoes.appendChild(btnExcluir);
+
+      item.appendChild(texto);
+      item.appendChild(botoes);
       lista.appendChild(item);
     });
   } catch (erro) {
@@ -57,11 +64,11 @@ async function adicionarTarefa(descricao) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ descricao: descricao })
     });
-    
+
     if (!resposta.ok) {
       throw new Error('Erro ao adicionar tarefa');
     }
-    
+
     alert('Tarefa adicionada com sucesso!');
     carregarTarefas();
   } catch (erro) {
